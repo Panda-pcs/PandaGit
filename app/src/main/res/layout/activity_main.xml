@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/controller"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/controller_height"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/controller_one"
+            style="@style/controller_style"
+            android:text="@string/controller_one"
+            android:drawableTop="@drawable/controller_one_selector"
+            android:checked="true" />
+        <RadioButton
+            android:id="@+id/controller_two"
+            style="@style/controller_style"
+            android:drawableTop="@drawable/controller_two_selector"
+            android:text="@string/controller_two"/>
+        <RadioButton
+            android:id="@+id/controller_three"
+            style="@style/controller_style"
+            android:drawableTop="@drawable/controller_three_selector"
+            android:text="@string/controller_three"/>
+        <RadioButton
+            android:id="@+id/controller_four"
+            style="@style/controller_style"
+            android:drawableTop="@drawable/controller_four_selector"
+            android:text="@string/controller_four"/>
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FragmentCase</string>
+    <string name="controller_one">关系管理</string>
+    <string name="controller_two">情礼攻略</string>
+    <string name="controller_three">发现</string>
+    <string name="controller_four">我的</string>
+</resources>
