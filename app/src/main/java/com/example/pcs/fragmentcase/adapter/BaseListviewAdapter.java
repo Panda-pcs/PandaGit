@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/4/5 0005.
+ * @author pcs
+ * @since 2018-07-02.
  */
 public abstract class BaseListviewAdapter<T> extends BaseAdapter {
     private List<T> data;

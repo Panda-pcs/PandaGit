@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/radioGroup_main"
+        android:layout_below="@+id/toolbar" />
 
     <RadioGroup
-        android:id="@+id/controller"
+        android:id="@+id/radioGroup_main"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/controller_height"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/controller_one"
-            style="@style/controller_style"
-            android:text="@string/controller_one"
-            android:drawableTop="@drawable/controller_one_selector"
-            android:checked="true" />
+            android:id="@+id/rbtn_main_home"
+            style="@style/RButtonMain"
+            android:checked="true"
+            android:drawableTop="@drawable/selector_main_home"
+            android:text="@string/rbtn_main_home" />
+
         <RadioButton
-            android:id="@+id/controller_two"
-            style="@style/controller_style"
-            android:drawableTop="@drawable/controller_two_selector"
-            android:text="@string/controller_two"/>
+            android:id="@+id/rbtn_main_movie"
+            style="@style/RButtonMain"
+            android:drawableTop="@drawable/selector_main_movie"
+            android:text="@string/rbtn_main_movie" />
+
         <RadioButton
-            android:id="@+id/controller_three"
-            style="@style/controller_style"
-            android:drawableTop="@drawable/controller_three_selector"
-            android:text="@string/controller_three"/>
-        <RadioButton
-            android:id="@+id/controller_four"
-            style="@style/controller_style"
-            android:drawableTop="@drawable/controller_four_selector"
-            android:text="@string/controller_four"/>
+            android:id="@+id/rbtn_main_setting"
+            style="@style/RButtonMain"
+            android:drawableTop="@drawable/selector_main_setting"
+            android:text="@string/rbtn_main_setting" />
 
     </RadioGroup>
 
-</LinearLayout>
+</RelativeLayout>

@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Rock on 16/1/29.
+ * @author pcs
+ * @since 2018-07-02.
  */
 public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ViewHolder> {
 

@@ -1,7 +1,8 @@
 package com.example.pcs.fragmentcase.base;
 
 /**
- * Created by sks on 2016/4/26.
+ * @author pcs
+ * @since 2018-07-02.
  */
 public abstract class BaseModel {
     protected int type;

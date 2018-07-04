@@ -1,22 +1,31 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <!-- Base application theme.-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/MenuActionStyle</item>
     </style>
 
-    <style name="controller_style">
-        <item name="android:gravity">center</item>
-        <item name="android:layout_weight">1</item>
+    <!--Toorbar菜单式样（用途：让弹出菜单挨着Toolbar下面弹出）-->
+    <style name="MenuActionStyle" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <!--弹出菜单背景色-->
+        <item name="android:popupBackground">?attr/colorPrimary</item>
+        <!--弹出菜单与标题栏的垂直间距-->
+        <item name="android:dropDownVerticalOffset">0dp</item>
+    </style>
+
+
+    <style name="RButtonMain">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:textColor">@drawable/textcolor_selector</item>
-        <item name="android:drawablePadding">2dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">@color/selector_main_tab_color</item>
     </style>
 </resources>
