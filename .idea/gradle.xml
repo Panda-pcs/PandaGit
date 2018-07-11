@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$/Logger" />
             <option value="$PROJECT_DIR$/ProgressIndicator" />
             <option value="$PROJECT_DIR$/RxJava" />
+            <option value="$PROJECT_DIR$/SmartTabLayout" />
+            <option value="$PROJECT_DIR$/XRecyclerview" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

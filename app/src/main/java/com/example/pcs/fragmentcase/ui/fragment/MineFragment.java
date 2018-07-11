@@ -11,13 +11,11 @@ import com.example.pcs.fragmentcase.ui.view.LoadingDataLayout;
  * @author pcs
  * @since 2018-06-26.
  */
-public class HomeFragment extends BaseFragment {
-
+public class MineFragment extends BaseFragment {
     private Handler handler = new Handler();
-
     @Override
     public int getLayoutResID() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_setting;
     }
 
     @Override
@@ -27,6 +25,6 @@ public class HomeFragment extends BaseFragment {
             public void run() {
                 showLoadingStatus(LoadingDataLayout.STATUS_SUCCESS);
             }
-        },2000);
+        },1000);
     }
 }

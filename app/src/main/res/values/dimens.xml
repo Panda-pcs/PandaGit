@@ -12,4 +12,6 @@
     <dimen name="text_size_20">20sp</dimen>
 
     <dimen name="toolbar_padding_top">0dp</dimen>
+
+    <dimen name="card_margin">16dp</dimen>
 </resources>

@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.pcs.fragmentcase.R;
-import com.example.pcs.fragmentcase.utils.AnimationController;
+import com.example.pcs.fragmentcase.utils.animators.CommonAnimator;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 
 /**
  * Loading Data View
+ *
  * @author Starry Jerry
  */
 public class LoadingDataLayout extends RelativeLayout {
@@ -104,7 +105,6 @@ public class LoadingDataLayout extends RelativeLayout {
                 }
             }
         });
-        switchView();
     }
 
     /**
@@ -115,6 +115,10 @@ public class LoadingDataLayout extends RelativeLayout {
     public void setStatus(@Status int status) {
         mStatus = status;
         switchView();
+    }
+
+    public boolean isSuccess() {
+        return mStatus == STATUS_SUCCESS;
     }
 
     /**
@@ -159,8 +163,17 @@ public class LoadingDataLayout extends RelativeLayout {
                 break;
 
             case STATUS_SUCCESS:
-                AnimationController.fadeOut(container, 800, 0);//慢慢消失
-//                container.setVisibility(View.GONE);
+                new CommonAnimator.Builder(container)
+                        .alphaValues(1, 0)
+                        .duration(800)
+                        .listener(new CommonAnimator.Listener() {
+                            @Override
+                            public void onAnimationEnd() {
+                                container.setVisibility(GONE);
+                            }
+                        })
+                        .build()
+                        .foldWithAnimatorSet();
                 break;
 
             case STATUS_EMPTY:

@@ -12,4 +12,9 @@
     <item name="tv_network_error" type="id" />
     <!--内容为空提示信息-->
     <item name="tv_empty_data" type="id" />
+
+    <item name="appbar" type="id" />
+
+    <item name="collapsing_toolbar" type="id" />
+
 </resources>

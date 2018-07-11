@@ -9,9 +9,9 @@ import com.example.pcs.fragmentcase.R;
 import com.example.pcs.fragmentcase.base.BaseActivity;
 import com.example.pcs.fragmentcase.base.BaseApp;
 import com.example.pcs.fragmentcase.base.BaseFragment;
-import com.example.pcs.fragmentcase.ui.fragment.HomeFragment;
+import com.example.pcs.fragmentcase.ui.fragment.BookFragment;
 import com.example.pcs.fragmentcase.ui.fragment.MovieFragment;
-import com.example.pcs.fragmentcase.ui.fragment.SettingFragment;
+import com.example.pcs.fragmentcase.ui.fragment.MineFragment;
 import com.example.pcs.fragmentcase.utils.ToastUtil;
 
 import java.lang.reflect.InvocationTargetException;
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     private BaseFragment cacheFragment;
 
-    private String[] title = {"首页", "电影", "设置"};
+    private String[] title = {"书籍", "电影", "我的"};
 
     @Override
     public int getLayoutResID() {
@@ -39,7 +39,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         return false;
     }
 
-    @Override
     protected void initView() {
         setTitle(title[0]);
         controller = findViewById(R.id.radioGroup_main);
@@ -50,9 +49,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         // 开始事务
         FragmentTransaction transaction = fm.beginTransaction();
         // 获取第一个页面，并持有引用
-        cacheFragment = new HomeFragment();
+        cacheFragment = new BookFragment();
         // 事务中将第一个页面添加到container当中，并且设置标记TAG
-        transaction.add(R.id.container, cacheFragment, HomeFragment.class.getSimpleName());
+        transaction.add(R.id.container, cacheFragment, BookFragment.class.getSimpleName());
         // 提交事务
         transaction.commit();
 
@@ -60,7 +59,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     public void initData() {
-
+        initView();
     }
 
     /**
@@ -72,7 +71,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         switch (i) {
             case R.id.rbtn_main_home:
                 // 进化版
-                switchPage(transaction, HomeFragment.class, HomeFragment.class.getSimpleName());
+                switchPage(transaction, BookFragment.class, BookFragment.class.getSimpleName());
                 setTitle(title[0]);
                 break;
             case R.id.rbtn_main_movie:
@@ -80,7 +79,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 setTitle(title[1]);
                 break;
             case R.id.rbtn_main_setting:
-                switchPage(transaction, SettingFragment.class, SettingFragment.class.getSimpleName());
+                switchPage(transaction, MineFragment.class, MineFragment.class.getSimpleName());
                 setTitle(title[2]);
                 break;
         }

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.pcs.fragmentcase.R;
+import com.example.pcs.fragmentcase.http.HttpManager;
 import com.example.pcs.fragmentcase.ui.view.ILoadingView;
 import com.example.pcs.fragmentcase.ui.view.LoadingDataLayout;
 
@@ -26,6 +27,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseUI,
     @BindView(R.id.view_loading_container)
     protected LoadingDataLayout mLoadingDataLayout;
 
+    @Nullable
+    @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
     @Override
@@ -35,19 +38,20 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseUI,
         setContentView(getLayoutResID());
         ButterKnife.bind(this);//必须在setContentView()之后调用
 
+        initToolBar();
         initLoadingDataLaout();
 
-        initToolBar();
 
-        initView();
         initData();
         setListener();
     }
 
     protected void initLoadingDataLaout() {
         //如果需要progress开始就出现则需要findViewByID
-
         if (mLoadingDataLayout != null) {
+            //加载View开始转
+            showLoading();
+            //转的时候开始请求数据
             mLoadingDataLayout.setRetryListener(new LoadingDataLayout.OnRetryListener() {
                 @Override
                 public void onRetry() {
@@ -59,7 +63,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseUI,
 
 
     private void initToolBar() {
-        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("");//标题内容
         ActionBar ab = getSupportActionBar();
@@ -70,12 +73,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseUI,
             }
             ab.setDisplayHomeAsUpEnabled(displayHomeAsUpEnabled());//显示返回键
         }
-    }
-
-    protected abstract void initView();
-
-    public void setListener() {
-
     }
 
     /**
@@ -104,6 +101,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseUI,
 
     }
 
+
+    public void setListener() {
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -122,7 +124,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseUI,
     @Override
     protected void onDestroy() {
         //如果关闭页面，取消请求
-//        HttpManager.getInstance().cancelTag(this);
+        HttpManager.getInstance().cancelTag(this);
 
         super.onDestroy();
     }
@@ -135,23 +137,22 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseUI,
      * @param status 网络请求状态
      */
     protected void showLoadingStatus(int status) {
-        if (mLoadingDataLayout != null)
+        if (mLoadingDataLayout != null&&!mLoadingDataLayout.isSuccess())
             mLoadingDataLayout.setStatus(status);
     }
     //-------------------------------ILoadingView-----------------------------------
 
     @Override
     public void showLoading() {
-
+        showLoadingStatus(LoadingDataLayout.STATUS_LOADING);
     }
 
     @Override
-    public void hideLoading(int status) {
-
-    }
-
-    @Override
-    public void onLoadingComplete() {
-
+    public void hideLoading(boolean isHide) {
+        if (isHide) {
+            showLoadingStatus(LoadingDataLayout.STATUS_SUCCESS);
+        } else {
+            showLoadingStatus(LoadingDataLayout.STATUS_ERROR);
+        }
     }
 }

@@ -1,11 +1,6 @@
 package com.example.pcs.fragmentcase.base;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -14,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.pcs.fragmentcase.utils.AnimationController;
-import com.example.pcs.fragmentcase.utils.ImageManager;
+import com.example.pcs.fragmentcase.utils.image.ImageManager;
 
 import java.util.List;
-
 
 /**
  * 通用的RecyclerView的适配器
@@ -26,12 +19,10 @@ import java.util.List;
  * 参考了Hongyang的 http://blog.csdn.net/lmj623565791/article/details/38902805这篇博客
  * <p/>
  */
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.RecyclerViewHolder> {
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter<T>.RecyclerViewHolder> {
 
     protected List<T> mBeans;
     protected Context mContext;
-    protected boolean mAnimateItems = true;
-    protected int mLastAnimatedPosition = -1;
 
     public BaseRecyclerAdapter(Context context, List<T> beans) {
         mContext = context;
@@ -45,11 +36,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         return new RecyclerViewHolder(view);
     }
 
-
+    @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
-        //TODO 快速上拉加载更多动画时item有视图重叠bug
-//        runEnterAnimation(holder.itemView, position);
-
         final T bean = mBeans.get(position);
         onBindData(holder, bean, position);
 
@@ -126,23 +114,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         return mBeans;
     }
 
-    /***
-     * item的加载动画
-     *
-     * @param view
-     * @param position
-     */
-    private void runEnterAnimation(final View view, int position) {
-        if (!mAnimateItems) {
-            return;
-        }
-        if (position > mLastAnimatedPosition) {
-            mLastAnimatedPosition = position;
-            AnimationController.scaleIn(view, 300, 100);
-        }
-    }
-
-
     /**
      * ItemView的单击事件(如果需要，重写此方法就行)
      *
@@ -157,13 +128,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
      * @param position
      */
     protected void onLongItemClick(int position) {
-    }
-
-    public void startActivityWithAnimation(Context context, Intent intent, View item) {
-        Pair squareParticipant = new Pair<>(item, ViewCompat.getTransitionName(item));
-        Activity activity = (Activity) context;
-        ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, squareParticipant);
-        context.startActivity(intent, transitionActivityOptions.toBundle());
     }
 
     //#####################################################################################
@@ -195,12 +159,10 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     public class RecyclerViewHolder extends
             RecyclerView.ViewHolder {
         private final SparseArray<View> viewHolder;
-        public View itemView;
 
         private RecyclerViewHolder(View itemView) {
             super(itemView);
             this.viewHolder = new SparseArray<>();
-            this.itemView = itemView;
         }
 
         public <T extends View> T getView(int viewId) {

@@ -13,14 +13,12 @@ public interface ILoadingView {
 
     /**
      * 隐藏 Loading View
-     *
-     * @param status 1正常 2加载失败 3数据为空
      */
-    void hideLoading(int status);
+    void hideLoading(boolean isHide);
 
     /**
      * 加载完成
      */
-    void onLoadingComplete();
+//    void onLoadingComplete();
 
 }

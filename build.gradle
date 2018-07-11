@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
@@ -23,6 +23,19 @@ allprojects {
         jcenter()
     }
 }
+
+
+//解决在不知道具体哪一个依赖包下的依赖冲突(如v4包冲突)，统一依赖包版本27.1.1
+//subprojects {
+//    project.configurations.all {
+//        resolutionStrategy.eachDependency { details ->
+//            if (details.requested.group == 'com.android.support'
+//                    && !details.requested.name.contains('multidex')) {
+//                details.useVersion '27.1.1'//改这个版本号到你想要的版本
+//            }
+//        }
+//    }
+//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

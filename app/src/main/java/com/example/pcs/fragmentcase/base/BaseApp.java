@@ -34,7 +34,7 @@ public class BaseApp {
         context = base;
     }
 
-    private ActivityLifeCallBack actCallBack;
+    private ActivityLifeCallBack actCallBack=new ActivityLifeCallBack();
 
     /**
      * 退出整个应用
